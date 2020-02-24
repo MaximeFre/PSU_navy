@@ -10,6 +10,18 @@ SRC =	src/init_game.c			\
 		src/my_putchar.c		\
 		src/my_putstr.c			\
 		src/main.c				\
+		src/open_file.c			\
+		src/my_strcmp.c			\
+		src/my_strlen.c			\
+		src/init_map.c			\
+		src/fill.c				\
+		src/my_getnbr.c			\
+		src/first_loop.c		\
+		src/sec_loop.c			\
+		src/my_revstr.c			\
+		src/my_basestr.c		\
+		src/malloc_str.c		\
+		src/check_hit.c			\
 
 OBJ = $(SRC:.c=.o)
 
