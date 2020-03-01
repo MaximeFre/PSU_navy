@@ -17,7 +17,7 @@
 
 void my_putstr(char const *str);
 void my_putchar(char c);
-int init_game(int ac, char **av, map_t *map);
+void init_game(int ac, char **av, map_t *map);
 int my_put_nbr(int nb);
 char *open_file(char const *filepath);
 char **str_to_arr(char *file);
@@ -39,3 +39,6 @@ void receive_touch(map_t *map, char *pos);
 void send_bin(char *input, map_t *map);
 int check_valide(char *input);
 void check_end(map_t *map);
+void attack(map_t *map);
+void waiting(map_t *map);
+void disp_maps(map_t *map);

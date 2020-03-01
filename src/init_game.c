@@ -14,7 +14,7 @@
 
 int global = 0;
 
-void which_sig(int signum, siginfo_t *sig, void *oldact)
+void which_sig(int signum)
 {
     if (signum == 10)
         global = 1;
@@ -26,7 +26,6 @@ void stop(int sig)
 {
     global = global;
 }
-
 
 void receive_touch(map_t *map, char *pos)
 {
@@ -49,7 +48,6 @@ void receive_touch(map_t *map, char *pos)
         map->map_two[pos[1] - '0' + 1][(pos[0] - 'A') * 2 + 2] = 'o';
     }
 }
-
 
 void receive_pos(map_t *map)
 {
@@ -98,7 +96,7 @@ void its_co(int signum, siginfo_t *sig, void *oldact)
     my_putstr("successfully connected\n");
 }
 
-int init_game(int ac, char **av, map_t *map)
+void init_game(int ac, char **av, map_t *map)
 {
     pid_t my_pid = getpid();
     struct sigaction sig = {0};
@@ -109,7 +107,7 @@ int init_game(int ac, char **av, map_t *map)
     my_putchar('\n');
     if (ac == 2) {
         sig.sa_sigaction = send_sig;
-        my_putstr("waiting for ennemy connection...\n\n");
+        my_putstr("waiting for enemy connection...\n\n");
         sigaction(SIGUSR1, &sig, NULL);
         pause();
         map->pid = global;
@@ -120,5 +118,4 @@ int init_game(int ac, char **av, map_t *map)
         pause();
         map->pid = my_getnbr(av[1]);
     }
-    return (0);
 }

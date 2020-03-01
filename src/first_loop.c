@@ -45,33 +45,9 @@ void send_bin(char *input, map_t *map)
 
 void first_loop(map_t *map)
 {
-    char *input = malloc(sizeof(char) * 4);
-    size_t count = 4;
-    int valid = 0;
-
     while (map->end == 0) {
-        my_putstr("\nmy positions:\n");
-        for (int i = 0; i < 10; i++) {
-            my_putstr(map->map[i]);
-            my_putchar('\n');
-        }
-        my_putstr("\nenemy's positions:\n");
-        for (int i = 0; i < 10; i++) {
-            my_putstr(map->map_two[i]);
-            my_putchar('\n');
-        }
-        my_putstr("\nattack: ");
-        read(0, input, count);
-        valid = check_valide(input);
-        while (input[0] == '\0' || input[1] == '\0' || valid == 84) {
-            my_putstr("wrong position\nattack: ");
-            read(0, input, count);
-            valid = check_valide(input);
-        }
-        my_putstr(input);
-        my_putchar(':');
-        send_bin(input, map);
-        receive_touch(map, input);
+        disp_maps(map);
+        attack(map);
         if (map->win == 1)
             my_putstr("hit\n");
         else
@@ -79,29 +55,9 @@ void first_loop(map_t *map)
         check_end(map);
         if (map->end == 1)
             break;
-        my_putstr("\nwaiting for enemy's attack...\n");
-        receive_pos(map);
-        my_putstr(map->pos);
-        my_putchar(':');
-        if (check_hit(map) == 1) {
-            usleep(10000);
-            kill(map->pid, SIGUSR1);
-        } else {
-            usleep(10000);
-            kill(map->pid, SIGUSR2);
-        }
-        check_end(map);
+        waiting(map);
     }
-    my_putstr("\nmy positions:\n");
-    for (int i = 0; i < 10; i++) {
-        my_putstr(map->map[i]);
-        my_putchar('\n');
-    }
-    my_putstr("\nenemy's positions:\n");
-    for (int i = 0; i < 10; i++) {
-        my_putstr(map->map_two[i]);
-        my_putchar('\n');
-    }
+    disp_maps(map);
     if (map->winner == 2)
         my_putstr("\nI won\n");
     else
