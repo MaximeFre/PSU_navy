@@ -45,16 +45,16 @@ void waiting(map_t *map)
 
 void attack(map_t *map)
 {
-    char *input = malloc(sizeof(char) * 4);
-    size_t count = 4;
+    char *input;
+    size_t count;
     int valid = 0;
 
     my_putstr("\nattack: ");
-    read(0, input, count);
+    getline(&input, &count, stdin);
     valid = check_valide(input);
     while (input[0] == '\0' || input[1] == '\0' || valid == 84) {
         my_putstr("wrong position\nattack: ");
-        read(0, input, count);
+        getline(&input, &count, stdin);
         valid = check_valide(input);
     }
     my_putstr(input);
