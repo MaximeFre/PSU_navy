@@ -21,6 +21,7 @@ SRC =	src/init_game.c			\
 		src/my_revstr.c			\
 		src/malloc_str.c		\
 		src/check_hit.c			\
+		src/sig_handler.c		\
 
 OBJ = $(SRC:.c=.o)
 

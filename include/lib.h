@@ -42,3 +42,4 @@ void check_end(map_t *map);
 void attack(map_t *map);
 void waiting(map_t *map);
 void disp_maps(map_t *map);
+int *get_global(void);
