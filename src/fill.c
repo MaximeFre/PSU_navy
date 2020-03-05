@@ -48,3 +48,20 @@ void fill_line(char **map, int i, char **info)
         col += 2;
     }
 }
+
+char **fill_map(char **map)
+{
+    for (int i = 0; i < 17; i++)
+        map[1][i] = '-';
+    map[1][1] = '+';
+    for (int i = 2; i < 10; i++)
+        map[i][0] = i + '0' - 1;
+    for (int i = 2; i < 10; i++)
+        map[i][1] = '|';
+    for (int i = 2; i < 10; i++) {
+        for (int a = 2; a < 17; a++) {
+            (a % 2 == 0) ? (map[i][a] = '.') : (map[i][a] = ' ');
+        }
+    }
+    return (map);
+}

@@ -46,3 +46,4 @@ void waiting(map_t *map);
 void disp_maps(map_t *map);
 int *get_global(void);
 int my_arrlen(char **str);
+char **fill_map(char **map);

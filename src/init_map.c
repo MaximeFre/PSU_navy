@@ -70,19 +70,7 @@ char **initial_map(void)
         } else
             map[0][i + 2] = ' ';
     }
-    for (int i = 0; i < 17; i++)
-        map[1][i] = '-';
-    map[1][1] = '+';
-    for (int i = 2; i < 10; i++)
-        map[i][0] = i + '0' - 1;
-    for (int i = 2; i < 10; i++)
-        map[i][1] = '|';
-    for (int i = 2; i < 10; i++) {
-        for (int a = 2; a < 17; a++) {
-            (a % 2 == 0) ? (map[i][a] = '.') : (map[i][a] = ' ');
-        }
-    }
-    return (map);
+    return (fill_map(map));
 }
 
 char **create_map(char **info)

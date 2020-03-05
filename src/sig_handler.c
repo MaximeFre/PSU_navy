@@ -43,11 +43,31 @@ void receive_touch(map_t *map, char *pos)
     }
 }
 
+void receive_nb(map_t *map, int letter)
+{
+    int stop = 0;
+    int nb = 0;
+    struct sigaction sig = {0};
+
+    sig.sa_sigaction = which_sig;
+    sig.sa_flags = SA_SIGINFO;
+    while (stop == 0) {
+        sigaction(SIGUSR1, &sig, NULL);
+        sigaction(SIGUSR2, &sig, NULL);
+        pause();
+        if (global == 1)
+            nb += 1;
+        if (global == -1)
+            stop = 1;
+    }
+    map->pos[0] = 'A' + letter;
+    map->pos[1] = '0' + nb;
+}
+
 void receive_pos(map_t *map)
 {
     int stop = 0;
     int letter = 0;
-    int nb = 0;
     struct sigaction sig = {0};
 
     map->pos = malloc(sizeof(char) * 3);
@@ -64,16 +84,5 @@ void receive_pos(map_t *map)
         if (global == -1)
             stop = 1;
     }
-    stop = 0;
-    while (stop == 0) {
-        sigaction(SIGUSR1, &sig, NULL);
-        sigaction(SIGUSR2, &sig, NULL);
-        pause();
-        if (global == 1)
-            nb += 1;
-        if (global == -1)
-            stop = 1;
-    }
-    map->pos[0] = 'A' + letter;
-    map->pos[1] = '0' + nb;
+    receive_nb(map, letter);
 }
