@@ -30,6 +30,8 @@ int check_valid(char **map)
 
 int check_coor(char **map)
 {
+    if (my_arrlen(map) != 4)
+        return (84);
     for (int i = 0; i < 4; i++) {
         if (my_strlen(map[i]) != 7)
             return (84);

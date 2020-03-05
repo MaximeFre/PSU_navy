@@ -12,13 +12,6 @@
 #include "../include/lib.h"
 #include "../include/struct.h"
 
-int global = 0;
-
-int *get_global(void)
-{
-    return (&global);
-}
-
 void its_co(int signum, siginfo_t *sig, void *oldact)
 {
     my_putstr("successfully connected\n");
@@ -31,6 +24,7 @@ void stop(int sig)
 
 void send_sig(int signum, siginfo_t *sig, void *oldact)
 {
+    (void)signum;
     my_putstr("enemy connected\n");
     global = sig->si_pid;
     kill(sig->si_pid, SIGUSR1);

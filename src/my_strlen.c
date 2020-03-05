@@ -7,11 +7,21 @@
 
 int my_strlen(char const *str)
 {
-    int nbChar = 0;
+    int nb_char = 0;
 
     while (*str != '\0') {
         str++;
-        nbChar++;
+        nb_char++;
     }
-    return (nbChar);
+    return (nb_char);
+}
+
+int my_arrlen(char **str)
+{
+    int nb_line = 0;
+
+    for (int i = 0; str[i]; i++) {
+        nb_line++;
+    }
+    return (nb_line);
 }

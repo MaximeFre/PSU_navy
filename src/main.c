@@ -14,6 +14,7 @@ int main(int ac, char **av)
 {
     map_t *map = malloc(sizeof(map_t));
 
+    global = 0;
     if (ac == 2) {
         if (init_map(av[1], map) == 84)
             return (84);

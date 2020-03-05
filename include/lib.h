@@ -15,6 +15,8 @@
 #define MAX(x, y) (((x) < (y)) ? (y) : (x))
 #define MAXL(x, y) (((x) < (y)) ? (5) : (2))
 
+int global;
+
 void my_putstr(char const *str);
 void my_putchar(char c);
 void init_game(int ac, char **av, map_t *map);
@@ -43,3 +45,4 @@ void attack(map_t *map);
 void waiting(map_t *map);
 void disp_maps(map_t *map);
 int *get_global(void);
+int my_arrlen(char **str);

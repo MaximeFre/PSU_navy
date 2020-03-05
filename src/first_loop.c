@@ -15,7 +15,7 @@
 
 int check_valide(char *input)
 {
-    if (my_strlen(input) < 2)
+    if (my_strlen(input) != 3)
         return (84);
     if (input[0] > 'H' || input[0] < 'A')
         return (84);
