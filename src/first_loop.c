@@ -15,6 +15,8 @@
 
 int check_valide(char *input)
 {
+    if (my_strlen(input) < 2)
+        return (84);
     if (input[0] > 'H' || input[0] < 'A')
         return (84);
     if (input[1] > '8' || input[1] < '1')
@@ -51,7 +53,7 @@ void first_loop(map_t *map)
         if (map->win == 1)
             my_putstr("hit\n");
         else
-            my_putstr("missed");
+            my_putstr("missed\n");
         check_end(map);
         if (map->end == 1)
             break;

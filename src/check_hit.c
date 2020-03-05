@@ -15,13 +15,20 @@
 
 int check_hit(map_t *map)
 {
+    if (map->map[map->pos[1] - '0' + 1][(map->pos[0] - 'A') * 2 + 2] == 'x'
+    || map->map[map->pos[1] - '0' + 1][(map->pos[0] - 'A') * 2 + 2] == 'o') {
+        my_putstr("missed\n");
+        return (0);
+    }
     if (map->map[map->pos[1] - '0' + 1][(map->pos[0] - 'A') * 2 + 2] != '.') {
         my_putstr("hit\n");
         map->map[map->pos[1] - '0' + 1][(map->pos[0] - 'A') * 2 + 2] = 'x';
         return (1);
     }
-    my_putstr("missed\n");
-    map->map[map->pos[1] - '0' + 1][(map->pos[0] - 'A') * 2 + 2] = 'o';
+    else {
+        my_putstr("missed\n");
+        map->map[map->pos[1] - '0' + 1][(map->pos[0] - 'A') * 2 + 2] = 'o';
+    }
     return (0);
 }
 

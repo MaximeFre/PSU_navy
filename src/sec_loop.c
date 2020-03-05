@@ -45,8 +45,8 @@ void waiting(map_t *map)
 
 void attack(map_t *map)
 {
-    char *input;
-    size_t count;
+    char *input = NULL;
+    size_t count = 0;
     int valid = 0;
 
     my_putstr("\nattack: ");
@@ -61,6 +61,7 @@ void attack(map_t *map)
     my_putchar(':');
     send_bin(input, map);
     receive_touch(map, input);
+    free(input);
 }
 
 void sec_loop(map_t *map)
@@ -74,7 +75,7 @@ void sec_loop(map_t *map)
         if (map->win == 1)
             my_putstr("hit\n");
         else
-            my_putstr("missed");
+            my_putstr("missed\n");
         check_end(map);
     }
     disp_maps(map);

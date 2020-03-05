@@ -45,7 +45,8 @@ void receive_touch(map_t *map, char *pos)
     }
     if (global == -1) {
         map->win = 0;
-        map->map_two[pos[1] - '0' + 1][(pos[0] - 'A') * 2 + 2] = 'o';
+        if (map->map_two[pos[1] - '0' + 1][(pos[0] - 'A') * 2 + 2] != 'x')
+            map->map_two[pos[1] - '0' + 1][(pos[0] - 'A') * 2 + 2] = 'o';
     }
 }
 
@@ -86,7 +87,7 @@ void receive_pos(map_t *map)
 
 void send_sig(int signum, siginfo_t *sig, void *oldact)
 {
-    my_putstr("ennemy connected\n");
+    my_putstr("enemy connected\n");
     global = sig->si_pid;
     kill(sig->si_pid, SIGUSR1);
 }
