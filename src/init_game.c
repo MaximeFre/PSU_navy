@@ -14,17 +14,22 @@
 
 void its_co(int signum, siginfo_t *sig, void *oldact)
 {
+    (void)signum;
+    (void)sig;
+    (void)oldact;
     my_putstr("successfully connected\n");
 }
 
 void stop(int sig)
 {
+    (void)sig;
     global = global;
 }
 
 void send_sig(int signum, siginfo_t *sig, void *oldact)
 {
     (void)signum;
+    (void)oldact;
     my_putstr("enemy connected\n");
     global = sig->si_pid;
     kill(sig->si_pid, SIGUSR1);

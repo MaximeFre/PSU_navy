@@ -14,6 +14,9 @@
 
 void which_sig(int signum, siginfo_t *sig, void *oldact)
 {
+    (void)sig;
+    (void)oldact;
+
     if (signum == 10)
         global = 1;
     if (signum == 12)
